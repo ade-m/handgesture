@@ -90,4 +90,29 @@ print(f"Kamera yang tersedia: {available_cameras}")
 # Memilih kamera
 selected_camera_index = int(input(f"Pilih kamera (indeks) {available_cameras}: "))
 
+# Memilih kamera
+selected_camera_index = int(input(f"Pilih kamera (indeks) {available_cameras}: "))
 
+# Membuka kamera yang dipilih
+cap = cv2.VideoCapture(selected_camera_index)
+
+if not cap.isOpened():
+    print("Tidak dapat membuka kamera")
+    exit()
+
+# Loop untuk menangkap frame dari kamera dan mendeteksi gerakan tangan
+while cap.isOpened():
+    ret, frame = cap.read()
+    if not ret:
+        print("Gagal menangkap frame")
+        break
+
+    frame = detect_hand_gesture(frame, hands)
+    cv2.imshow('Hand Gesture Recognition', frame)
+
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
+
+# Melepaskan sumber daya kamera dan menutup jendela
+cap.release()
+cv2.destroyAllWindows()
