@@ -90,9 +90,6 @@ print(f"Kamera yang tersedia: {available_cameras}")
 # Memilih kamera
 selected_camera_index = int(input(f"Pilih kamera (indeks) {available_cameras}: "))
 
-# Memilih kamera
-selected_camera_index = int(input(f"Pilih kamera (indeks) {available_cameras}: "))
-
 # Membuka kamera yang dipilih
 cap = cv2.VideoCapture(selected_camera_index)
 
